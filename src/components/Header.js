@@ -6,7 +6,7 @@ function Header() {
         src={require("../images/troll-face.png")}
         alt="troll face"
       />
-      <h2 className="header--title">Header Component</h2>
+      <h2 className="header--title">Meme Generator</h2>
       <h4 className="header--project">React Course - Project 3</h4>
     </header>
   );
