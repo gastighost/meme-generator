@@ -2,11 +2,20 @@ import { useState } from "react";
 import jokes from "../memesData";
 
 function Meme() {
-  const [memeImage, setMemeImage] = useState();
+  const [meme, setMeme] = useState({
+    topText: "",
+    bottomText: "",
+    memeImage: "",
+  });
 
   function randomMeme() {
     const randomIndex = Math.floor(Math.random() * jokes.data.memes.length);
-    setMemeImage(jokes.data.memes[randomIndex].url);
+    setMeme((prevState) => {
+      return {
+        ...prevState,
+        memeImage: jokes.data.memes[randomIndex].url,
+      };
+    });
   }
 
   return (
@@ -26,7 +35,9 @@ function Meme() {
           Get a new meme
         </button>
       </div>
-      {memeImage && <img src={memeImage} alt="meme" className="meme-image" />}
+      {meme.memeImage && (
+        <img src={meme.memeImage} alt="meme" className="meme-image" />
+      )}
     </main>
   );
 }
