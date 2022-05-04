@@ -3,8 +3,8 @@ import jokes from "../memesData";
 
 function Meme() {
   const [meme, setMeme] = useState({
-    topText: "",
-    bottomText: "",
+    topText: "Bring me",
+    bottomText: "Fooood",
     memeImage: "",
   });
 
@@ -18,6 +18,16 @@ function Meme() {
     });
   }
 
+  function onChangeHandler(event) {
+    const { name, value } = event.target;
+    setMeme((prevState) => {
+      return {
+        ...prevState,
+        [name]: value,
+      };
+    });
+  }
+
   return (
     <main>
       <div className="form">
@@ -25,11 +35,17 @@ function Meme() {
           placeholder="Top text"
           className="form--input"
           type="text"
+          name="topText"
+          onChange={onChangeHandler}
+          value={meme.topText}
         ></input>
         <input
           placeholder="Bottom text"
           className="form--input"
           type="text"
+          name="bottomText"
+          onChange={onChangeHandler}
+          value={meme.bottomText}
         ></input>
         <button onClick={randomMeme} className="form--button">
           Get a new meme
@@ -38,8 +54,8 @@ function Meme() {
       {meme.memeImage && (
         <div className="meme">
           <img src={meme.memeImage} alt="meme" className="meme-image" />
-          <h2 className="meme--text top">One does not simply</h2>
-          <h2 className="meme--text bottom">Walk into Mordor</h2>
+          <h2 className="meme--text top">{meme.topText}</h2>
+          <h2 className="meme--text bottom">{meme.bottomText}</h2>
         </div>
       )}
     </main>
